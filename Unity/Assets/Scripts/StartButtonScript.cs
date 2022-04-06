@@ -22,17 +22,23 @@ public class StartButtonScript : MonoBehaviour
     private Image fieldImage;
 
     public List<Sprite> fieldImages;
-    /*public Sprite TokyoImage;
-    public Sprite SavannahImage;
-    public Sprite PacificOceanImage;
-    public Sprite SpaceImage;*/
+    enum Field {   
+        Tokyo = 0,
+        Savannah = 1,
+        PacificOcean = 2,
+        Space = 3,
+    }
 
-    public Sprite ElephantImage;
-    public Sprite LionImage;
-    public Sprite ZebraImage;
-    public Sprite DolphinImage;
-    public Sprite OrcaImage;
-    public Sprite HumanImage;
+    public List<Sprite> CharacterImages;
+
+    enum Character {
+        Elephant = 0,
+        Lion = 1,
+        Zebra = 2,
+        Dolphin = 3,
+        Orca = 4,
+        Human = 5,
+    }
 
     public Text creature1Text;
     public Text creature2Text;
@@ -111,10 +117,10 @@ public class StartButtonScript : MonoBehaviour
 
         Dictionary<Sprite, string> fields = new Dictionary<Sprite, string>()
         {
-            { fieldImages[0], "東京" },
-            { fieldImages[1], "サバンナ" },
-            { fieldImages[2], "太平洋" },
-            { fieldImages[3], "宇宙" },
+            { fieldImages[(int)Field.Tokyo], "東京" },
+            { fieldImages[(int)Field.Savannah], "サバンナ" },
+            { fieldImages[(int)Field.PacificOcean], "太平洋" },
+            { fieldImages[(int)Field.Space], "宇宙" },
         };
 
         Dictionary<string, int> new_creatures = new Dictionary<string, int>()
@@ -129,12 +135,12 @@ public class StartButtonScript : MonoBehaviour
 
         Dictionary<int, Sprite> creatures_image = new Dictionary<int, Sprite>()
         {
-            { 1, ElephantImage },
-            { 2, LionImage },
-            { 3, ZebraImage },
-            { 4, DolphinImage },
-            { 5, OrcaImage },
-            { 6, HumanImage },
+            { 1, CharacterImages[(int)Character.Elephant] },
+            { 2, CharacterImages[(int)Character.Lion] },
+            { 3, CharacterImages[(int)Character.Zebra] },
+            { 4, CharacterImages[(int)Character.Dolphin] },
+            { 5, CharacterImages[(int)Character.Orca] },
+            { 6, CharacterImages[(int)Character.Human] },
         };
 
         MainGameObject.SetActive(false);

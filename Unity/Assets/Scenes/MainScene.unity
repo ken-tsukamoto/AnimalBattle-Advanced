@@ -2378,12 +2378,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c6a2c40f8a205b74f81fc8091f06d78d, type: 3}
   - {fileID: 21300000, guid: 364dfcee7e8701e48b885db38d2f3a16, type: 3}
   - {fileID: 21300000, guid: ad5fc85a2ef45854da30971cf38fce64, type: 3}
-  ElephantImage: {fileID: 21300000, guid: 7a802940fc96e7c498750b24156cf9f8, type: 3}
-  LionImage: {fileID: 21300000, guid: 25ecd80439574974c8a5c4221772b51f, type: 3}
-  ZebraImage: {fileID: 21300000, guid: fc0778164cbcea0499611d4ad5ab1f7c, type: 3}
-  DolphinImage: {fileID: 21300000, guid: 83d0720db76ee8c439c138eddd2a3f32, type: 3}
-  OrcaImage: {fileID: 21300000, guid: 344dfe9d39d52db49b1ee2a85235c6cd, type: 3}
-  HumanImage: {fileID: 21300000, guid: 582b14ab35e186f48a59d696ac5afeb8, type: 3}
+  CharacterImages:
+  - {fileID: 21300000, guid: 7a802940fc96e7c498750b24156cf9f8, type: 3}
+  - {fileID: 21300000, guid: 25ecd80439574974c8a5c4221772b51f, type: 3}
+  - {fileID: 21300000, guid: fc0778164cbcea0499611d4ad5ab1f7c, type: 3}
+  - {fileID: 21300000, guid: 83d0720db76ee8c439c138eddd2a3f32, type: 3}
+  - {fileID: 21300000, guid: 344dfe9d39d52db49b1ee2a85235c6cd, type: 3}
+  - {fileID: 21300000, guid: 582b14ab35e186f48a59d696ac5afeb8, type: 3}
   creature1Text: {fileID: 131151087}
   creature2Text: {fileID: 1138188053}
   BattleText: {fileID: 686272067}
