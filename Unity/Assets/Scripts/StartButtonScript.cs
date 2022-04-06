@@ -21,10 +21,11 @@ public class StartButtonScript : MonoBehaviour
 
     private Image fieldImage;
 
-    public Sprite TokyoImage;
+    public List<Sprite> fieldImages;
+    /*public Sprite TokyoImage;
     public Sprite SavannahImage;
     public Sprite PacificOceanImage;
-    public Sprite SpaceImage;
+    public Sprite SpaceImage;*/
 
     public Sprite ElephantImage;
     public Sprite LionImage;
@@ -110,10 +111,10 @@ public class StartButtonScript : MonoBehaviour
 
         Dictionary<Sprite, string> fields = new Dictionary<Sprite, string>()
         {
-            { TokyoImage, "東京" },
-            { SavannahImage, "サバンナ" },
-            { PacificOceanImage, "太平洋" },
-            { SpaceImage, "宇宙" },
+            { fieldImages[0], "東京" },
+            { fieldImages[1], "サバンナ" },
+            { fieldImages[2], "太平洋" },
+            { fieldImages[3], "宇宙" },
         };
 
         Dictionary<string, int> new_creatures = new Dictionary<string, int>()

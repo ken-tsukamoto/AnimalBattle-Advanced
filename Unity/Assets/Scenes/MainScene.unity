@@ -2373,10 +2373,11 @@ MonoBehaviour:
   creatureBattleImage1: {fileID: 1550472736}
   creatureBattleImage2: {fileID: 1966346241}
   VSImage: {fileID: 460505490}
-  TokyoImage: {fileID: 21300000, guid: e10fb82bd435e52469af8e52a5b2830b, type: 3}
-  SavannahImage: {fileID: 21300000, guid: c6a2c40f8a205b74f81fc8091f06d78d, type: 3}
-  PacificOceanImage: {fileID: 21300000, guid: 364dfcee7e8701e48b885db38d2f3a16, type: 3}
-  SpaceImage: {fileID: 21300000, guid: ad5fc85a2ef45854da30971cf38fce64, type: 3}
+  fieldImages:
+  - {fileID: 21300000, guid: e10fb82bd435e52469af8e52a5b2830b, type: 3}
+  - {fileID: 21300000, guid: c6a2c40f8a205b74f81fc8091f06d78d, type: 3}
+  - {fileID: 21300000, guid: 364dfcee7e8701e48b885db38d2f3a16, type: 3}
+  - {fileID: 21300000, guid: ad5fc85a2ef45854da30971cf38fce64, type: 3}
   ElephantImage: {fileID: 21300000, guid: 7a802940fc96e7c498750b24156cf9f8, type: 3}
   LionImage: {fileID: 21300000, guid: 25ecd80439574974c8a5c4221772b51f, type: 3}
   ZebraImage: {fileID: 21300000, guid: fc0778164cbcea0499611d4ad5ab1f7c, type: 3}
