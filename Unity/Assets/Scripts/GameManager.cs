@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
     const int OrcaPower = 80;
     const int HumanPower = 10;
 
-    const string tokyo = "東京";
-    const string savannah = "サバンナ";
+    const string Tokyo = "東京";
+    const string Savannah = "サバンナ";
     const string PacificOcean = "太平洋";
-    const string space = "宇宙";
+    const string Space = "宇宙";
 
     const string ElephantImage = "ゾウ2";
     const string LionImage = "ライオン2";
@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour
     const string OrcaImage = "シャチ2";
     const string HumanImage = "人間2";
 
-    const string power = "攻撃力";
-    const string winner = "勝者";
-    const string draw = "Draw";
+    const string Power = "攻撃力";
+    const string Winner = "勝者";
+    const string Draw = "Draw";
 
     const int FalseVsImageTime = 1;
     const int TrueSmokeAnimationTime = 1;
@@ -179,60 +179,60 @@ public class GameManager : MonoBehaviour
 
     void ChangeNextFieldImage()
     {
-        if (_fieldText.text == tokyo)
+        if (_fieldText.text == Tokyo)
         {
-            _fieldText.text = savannah;
+            _fieldText.text = Savannah;
             _fieldImage.sprite = _fieldImages[(int)Field.Savannah];
         }
-        else if (_fieldText.text == savannah)
+        else if (_fieldText.text == Savannah)
         {
             _fieldText.text = PacificOcean;
             _fieldImage.sprite = _fieldImages[(int)Field.PacificOcean];
         }
         else if (_fieldText.text == PacificOcean)
         {
-            _fieldText.text = space;
+            _fieldText.text = Space;
             _fieldImage.sprite = _fieldImages[(int)Field.Space];
         }
         else
         {
-            _fieldText.text = tokyo;
+            _fieldText.text = Tokyo;
             _fieldImage.sprite = _fieldImages[(int)Field.Tokyo];
         }
     }
 
     void ChangeReturnFieldImage()
     {
-        if (_fieldText.text == tokyo)
+        if (_fieldText.text == Tokyo)
         {
-            _fieldText.text = space;
+            _fieldText.text = Space;
             _fieldImage.sprite = _fieldImages[(int)Field.Space];
         }
-        else if (_fieldText.text == space)
+        else if (_fieldText.text == Space)
         {
             _fieldText.text = PacificOcean;
             _fieldImage.sprite = _fieldImages[(int)Field.PacificOcean];
         }
         else if (_fieldText.text == PacificOcean)
         {
-            _fieldText.text = savannah;
+            _fieldText.text = Savannah;
             _fieldImage.sprite = _fieldImages[(int)Field.Savannah];
         }
         else
         {
-            _fieldText.text = tokyo;
+            _fieldText.text = Tokyo;
             _fieldImage.sprite = _fieldImages[(int)Field.Tokyo];
         }
     }
 
     void StartGame(){
         Creature elephant, lion, zebra, dolphin, orca, human;
-        elephant = new Creature(ElephantName, ElephantPower, savannah);
-        lion = new Creature(LionName, LionPower, savannah);
-        zebra = new Creature(ZebraName, ZebraPower, savannah);
+        elephant = new Creature(ElephantName, ElephantPower, Savannah);
+        lion = new Creature(LionName, LionPower, Savannah);
+        zebra = new Creature(ZebraName, ZebraPower, Savannah);
         dolphin = new Creature(DolphinName, DolphinPower, PacificOcean);
         orca = new Creature(OrcaName, OrcaPower, PacificOcean);
-        human = new Creature(HumanName, HumanPower, tokyo);
+        human = new Creature(HumanName, HumanPower, Tokyo);
 
         Dictionary<int, Creature> creatures = new Dictionary<int, Creature>()
         {
@@ -246,10 +246,10 @@ public class GameManager : MonoBehaviour
 
         Dictionary<Sprite, string> fields = new Dictionary<Sprite, string>()
         {
-            { _fieldImages[(int)Field.Tokyo], tokyo },
-            { _fieldImages[(int)Field.Savannah], savannah },
+            { _fieldImages[(int)Field.Tokyo], Tokyo },
+            { _fieldImages[(int)Field.Savannah], Savannah },
             { _fieldImages[(int)Field.PacificOcean], PacificOcean },
-            { _fieldImages[(int)Field.Space], space },
+            { _fieldImages[(int)Field.Space], Space },
         };
 
         Dictionary<string, int> new_creatures = new Dictionary<string, int>()
@@ -295,19 +295,19 @@ public class GameManager : MonoBehaviour
     {
         Dictionary<string, int> fieldScale = new Dictionary<string, int>()
         {
-            {tokyo, 15},
-            {savannah, 4},
+            {Tokyo, 15},
+            {Savannah, 4},
             {PacificOcean, 6},
-            {space, 2}
+            {Space, 2}
         };
 
         if (player.field == field)
         {
             _playerScaledPower = player.power * fieldScale[player.field];
         }
-        else if (field == space)
+        else if (field == Space)
         {
-            _playerScaledPower = player.power / fieldScale[space];
+            _playerScaledPower = player.power / fieldScale[Space];
         }
         else 
         {
@@ -318,32 +318,32 @@ public class GameManager : MonoBehaviour
         {
             _opponentScaledPower = opponent.power * fieldScale[opponent.field];
         }
-        else if (field == space)
+        else if (field == Space)
         {
-            _opponentScaledPower = opponent.power / fieldScale[space];
+            _opponentScaledPower = opponent.power / fieldScale[Space];
         }
         else 
         {
             _opponentScaledPower = opponent.power;
         }
 
-        _playerCreatureText.text = player.field + "\n" + power + ":" +
+        _playerCreatureText.text = player.field + "\n" + Power + ":" +
             _playerScaledPower + "\n" + player.name;
 
-        _opponentCreatureText.text = opponent.field + "\n" + power + ":" +
+        _opponentCreatureText.text = opponent.field + "\n" + Power + ":" +
             _opponentScaledPower + "\n" + opponent.name;
 
         if (_playerScaledPower > _opponentScaledPower)
         {
-            _battleText.text = winner + "\n" + player.name;
+            _battleText.text = Winner + "\n" + player.name;
         }
         else if (_playerScaledPower < _opponentScaledPower)
         {
-            _battleText.text = winner + "\n" + opponent.name;
+            _battleText.text = Winner + "\n" + opponent.name;
         }
         else
         {
-            _battleText.text = draw;
+            _battleText.text = Draw;
         }
     }
 
