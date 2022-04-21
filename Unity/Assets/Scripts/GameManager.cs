@@ -16,32 +16,32 @@ public class GameManager : MonoBehaviour
     const string _orca = "シャチ";
     const string _human = "人間";
 
-    const int _elephantPower = 100;
-    const int _lionPower = 80;
-    const int _zebraPower = 30;
-    const int _dolphinPower = 30;
-    const int _orcaPower = 80;
-    const int _humanPower = 10;
+    const int _ElephantPower = 100;
+    const int _LionPower = 80;
+    const int _ZebraPower = 30;
+    const int _DolphinPower = 30;
+    const int _OrcaPower = 80;
+    const int _HumanPower = 10;
 
     const string _tokyo = "東京";
     const string _savannah = "サバンナ";
-    const string _pacificOcean = "太平洋";
+    const string _PacificOcean = "太平洋";
     const string _space = "宇宙";
 
-    const string _elephantImage = "ゾウ2";
-    const string _lionImage = "ライオン2";
-    const string _zebraImage = "シマウマ2";
-    const string _dolphinImage = "イルカ2";
-    const string _orcaImage = "シャチ2";
-    const string _humanImage = "人間2";
+    const string _ElephantImage = "ゾウ2";
+    const string _LionImage = "ライオン2";
+    const string _ZebraImage = "シマウマ2";
+    const string _DolphinImage = "イルカ2";
+    const string _OrcaImage = "シャチ2";
+    const string _HumanImage = "人間2";
 
     const string _power = "攻撃力";
     const string _winner = "勝者";
     const string _draw = "Draw";
 
-    const int _falseVsImageTime = 1;
-    const int _trueSmokeAnimationTime = 1;
-    const int _finishBattleTime = 2;
+    const int _FalseVsImageTime = 1;
+    const int _TrueSmokeAnimationTime = 1;
+    const int _FinishBattleTime = 2;
 
     [SerializeField] GameObject _mainGameObject;
     [SerializeField] GameObject _battleGameObject;
@@ -186,10 +186,10 @@ public class GameManager : MonoBehaviour
         }
         else if (_fieldText.text == _savannah)
         {
-            _fieldText.text = _pacificOcean;
+            _fieldText.text = _PacificOcean;
             _fieldImage.sprite = _fieldImages[(int)Field.PacificOcean];
         }
-        else if (_fieldText.text == _pacificOcean)
+        else if (_fieldText.text == _PacificOcean)
         {
             _fieldText.text = _space;
             _fieldImage.sprite = _fieldImages[(int)Field.Space];
@@ -210,10 +210,10 @@ public class GameManager : MonoBehaviour
         }
         else if (_fieldText.text == _space)
         {
-            _fieldText.text = _pacificOcean;
+            _fieldText.text = _PacificOcean;
             _fieldImage.sprite = _fieldImages[(int)Field.PacificOcean];
         }
-        else if (_fieldText.text == _pacificOcean)
+        else if (_fieldText.text == _PacificOcean)
         {
             _fieldText.text = _savannah;
             _fieldImage.sprite = _fieldImages[(int)Field.Savannah];
@@ -227,12 +227,12 @@ public class GameManager : MonoBehaviour
 
     void StartGame(){
         Creature elephant, lion, zebra, dolphin, orca, human;
-        elephant = new Creature(_elephant, _elephantPower, _savannah);
-        lion = new Creature(_lion, _lionPower, _savannah);
-        zebra = new Creature(_zebra, _zebraPower, _savannah);
-        dolphin = new Creature(_dolphin, _dolphinPower, _pacificOcean);
-        orca = new Creature(_orca, _orcaPower, _pacificOcean);
-        human = new Creature(_human, _humanPower, _tokyo);
+        elephant = new Creature(_elephant, _ElephantPower, _savannah);
+        lion = new Creature(_lion, _LionPower, _savannah);
+        zebra = new Creature(_zebra, _ZebraPower, _savannah);
+        dolphin = new Creature(_dolphin, _DolphinPower, _PacificOcean);
+        orca = new Creature(_orca, _OrcaPower, _PacificOcean);
+        human = new Creature(_human, _HumanPower, _tokyo);
 
         Dictionary<int, Creature> creatures = new Dictionary<int, Creature>()
         {
@@ -248,18 +248,18 @@ public class GameManager : MonoBehaviour
         {
             { _fieldImages[(int)Field.Tokyo], _tokyo },
             { _fieldImages[(int)Field.Savannah], _savannah },
-            { _fieldImages[(int)Field.PacificOcean], _pacificOcean },
+            { _fieldImages[(int)Field.PacificOcean], _PacificOcean },
             { _fieldImages[(int)Field.Space], _space },
         };
 
         Dictionary<string, int> new_creatures = new Dictionary<string, int>()
         {
-            { _elephantImage, 1 },
-            { _lionImage, 2 },
-            { _zebraImage, 3 },
-            { _dolphinImage, 4 },
-            { _orcaImage, 5 },
-            { _humanImage, 6 },
+            { _ElephantImage, 1 },
+            { _LionImage, 2 },
+            { _ZebraImage, 3 },
+            { _DolphinImage, 4 },
+            { _OrcaImage, 5 },
+            { _HumanImage, 6 },
         };
 
         Dictionary<int, Sprite> creatures_image = new Dictionary<int, Sprite>()
@@ -297,7 +297,7 @@ public class GameManager : MonoBehaviour
         {
             {_tokyo, 15},
             {_savannah, 4},
-            {_pacificOcean, 6},
+            {_PacificOcean, 6},
             {_space, 2}
         };
 
@@ -360,14 +360,14 @@ public class GameManager : MonoBehaviour
     IEnumerator BattleCoroutine(){
         _playerCreatureSmoke.SetActive(false);
         _opponentCreatureSmoke.SetActive(false);
-        yield return new WaitForSeconds(_falseVsImageTime);
+        yield return new WaitForSeconds(_FalseVsImageTime);
         _vsImage.enabled = false;
         _playerBattleAnimator.SetTrigger("PlayerBattleTrigger");
         _opponentBattleAnimator.SetTrigger("OpponentBattleTrigger");
-        yield return new WaitForSeconds(_trueSmokeAnimationTime);
+        yield return new WaitForSeconds(_TrueSmokeAnimationTime);
         _playerCreatureSmoke.SetActive(true);
         _opponentCreatureSmoke.SetActive(true);
-        yield return new WaitForSeconds(_finishBattleTime);
+        yield return new WaitForSeconds(_FinishBattleTime);
         _playerCreatureSmoke.SetActive(false);
         _opponentCreatureSmoke.SetActive(false);
         _battleText.enabled = true;
