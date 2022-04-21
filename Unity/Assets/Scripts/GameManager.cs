@@ -39,9 +39,9 @@ public class GameManager : MonoBehaviour
     const string _winner = "勝者";
     const string _draw = "Draw";
 
-    const int _enabledVsImageTime = 1;
-    const int _finishBattleTime = 4;
-    const int _smokeAnimationTime = 2;
+    const int _falseVsImageTime = 1;
+    const int _trueSmokeAnimationTime = 1;
+    const int _finishBattleTime = 2;
 
     [SerializeField] GameObject _mainGameObject;
     [SerializeField] GameObject _battleGameObject;
@@ -145,27 +145,7 @@ public class GameManager : MonoBehaviour
 
     void SetImage(int number)
     {
-        switch (number)
-        {
-            case 0:
-                CharacterDisplay(number);
-                break;
-            case 1:
-                CharacterDisplay(number);
-                break;
-            case 2:
-                CharacterDisplay(number);
-                break;
-            case 3:
-                CharacterDisplay(number);
-                break;
-            case 4:
-                CharacterDisplay(number);
-                break;
-            case 5:
-                CharacterDisplay(number);
-                break;
-        }
+        CharacterDisplay(number);
     }
 
     void SetPlayerDelete()
@@ -308,13 +288,7 @@ public class GameManager : MonoBehaviour
 
         JudgeBattle(player, opponent, _field);
 
-        StartCoroutine("BattleAnimation");
-
-        StartCoroutine("SmokeAnimation");
-        
-        StartCoroutine("EnabledVsImage");
-
-        StartCoroutine("FinishBattle");
+        StartCoroutine(BattleCoroutine());
     }
 
     void JudgeBattle(Creature player, Creature opponent, string field)
@@ -383,32 +357,21 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator EnabledVsImage(){
-        yield return new WaitForSeconds(_enabledVsImageTime);
+    IEnumerator BattleCoroutine(){
+        _playerCreatureSmoke.SetActive(false);
+        _opponentCreatureSmoke.SetActive(false);
+        yield return new WaitForSeconds(_falseVsImageTime);
         _vsImage.enabled = false;
-    }
-
-    IEnumerator FinishBattle(){
+        _playerBattleAnimator.SetTrigger("PlayerBattleTrigger");
+        _opponentBattleAnimator.SetTrigger("OpponentBattleTrigger");
+        yield return new WaitForSeconds(_trueSmokeAnimationTime);
+        _playerCreatureSmoke.SetActive(true);
+        _opponentCreatureSmoke.SetActive(true);
         yield return new WaitForSeconds(_finishBattleTime);
+        _playerCreatureSmoke.SetActive(false);
+        _opponentCreatureSmoke.SetActive(false);
         _battleText.enabled = true;
         _battleTextImage.enabled = true;
         _nextGameButton.gameObject.SetActive(true);
-    }
-
-    IEnumerator BattleAnimation(){
-        yield return new WaitForSeconds(_enabledVsImageTime);
-        _playerBattleAnimator.SetTrigger("PlayerBattleTrigger");
-        _opponentBattleAnimator.SetTrigger("OpponentBattleTrigger");
-    }
-
-    IEnumerator SmokeAnimation(){
-        _playerCreatureSmoke.SetActive(false);
-        _opponentCreatureSmoke.SetActive(false);
-        yield return new WaitForSeconds(_smokeAnimationTime);
-        _playerCreatureSmoke.SetActive(true);
-        _opponentCreatureSmoke.SetActive(true);
-        yield return new WaitForSeconds(_smokeAnimationTime);
-        _playerCreatureSmoke.SetActive(false);
-        _opponentCreatureSmoke.SetActive(false);
     }
 }
