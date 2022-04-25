@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _creatureShowView.SetCreatureShow();
-        _changeFieldImageView.ChangeFieldImage();
+        _changeFieldImageView.OnClickFieldImageButton();
         _battleView.Battle();
     }
 }

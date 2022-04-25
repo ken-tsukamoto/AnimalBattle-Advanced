@@ -13,56 +13,44 @@ public class ChangeFieldImageView : MonoBehaviour
 
     [SerializeField] Text _fieldText;
 
-    public void ChangeFieldImage(){
-        _nextFieldImageButton.onClick.AddListener(()=> ChangeNextFieldImage());
-        _returnFieldImageButton.onClick.AddListener(()=> ChangeReturnFieldImage());
+    int _fieldNumber = 0;
+
+    public void OnClickFieldImageButton(){
+        _nextFieldImageButton.onClick.AddListener(()=> ChangeFieldImage(true));
+        _returnFieldImageButton.onClick.AddListener(()=> ChangeFieldImage(false));
     }
 
-    public void ChangeNextFieldImage()
-    {
-        if (_fieldText.text == FieldConstant.Tokyo)
+    void ChangeFieldImage(bool next){
+        List<string> _changeFields = new List<string>()
+        { 
+            FieldConstant.Tokyo,
+            FieldConstant.Savannah,
+            FieldConstant.PacificOcean,
+            FieldConstant.Space,
+        };
+
+        if (next == true)
         {
-            _fieldText.text = FieldConstant.Savannah;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.Savannah];
-        }
-        else if (_fieldText.text == FieldConstant.Savannah)
-        {
-            _fieldText.text = FieldConstant.PacificOcean;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.PacificOcean];
-        }
-        else if (_fieldText.text == FieldConstant.PacificOcean)
-        {
-            _fieldText.text = FieldConstant.Space;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.Space];
+            _fieldNumber++;
+            if (_fieldNumber == 4)
+            {
+                _fieldNumber = 0;
+            }
+            SetTextAndImage(_changeFields[_fieldNumber], _fieldNumber);
         }
         else
         {
-            _fieldText.text = FieldConstant.Tokyo;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.Tokyo];
+            _fieldNumber--;
+            if (_fieldNumber == -1)
+            {
+                _fieldNumber = 3;
+            }
+            SetTextAndImage(_changeFields[_fieldNumber], _fieldNumber);
         }
     }
 
-    public void ChangeReturnFieldImage()
-    {
-        if (_fieldText.text == FieldConstant.Tokyo)
-        {
-            _fieldText.text = FieldConstant.Space;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.Space];
-        }
-        else if (_fieldText.text == FieldConstant.Space)
-        {
-            _fieldText.text = FieldConstant.PacificOcean;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.PacificOcean];
-        }
-        else if (_fieldText.text == FieldConstant.PacificOcean)
-        {
-            _fieldText.text = FieldConstant.Savannah;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.Savannah];
-        }
-        else
-        {
-            _fieldText.text = FieldConstant.Tokyo;
-            _fieldImage.sprite = _fieldImages[(int)FieldConstant.Field.Tokyo];
-        }
+    void SetTextAndImage(string fieldName, int fieldNumber){
+        _fieldText.text = fieldName;
+        _fieldImage.sprite = _fieldImages[fieldNumber];
     }
 }
