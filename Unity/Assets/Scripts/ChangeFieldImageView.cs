@@ -15,41 +15,42 @@ public class ChangeFieldImageView : MonoBehaviour
 
     int _fieldNumber = 0;
 
-    public void OnClickFieldImageButton(){
-        _nextFieldImageButton.onClick.AddListener(()=> ChangeFieldImage(true));
-        _returnFieldImageButton.onClick.AddListener(()=> ChangeFieldImage(false));
+    List<string> _fieldsName = new List<string>()
+    { 
+        FieldConstant.Tokyo,
+        FieldConstant.Savannah,
+        FieldConstant.PacificOcean,
+        FieldConstant.Space,
+    };
+
+    public void OnClickFieldImageButton()
+    {
+        _nextFieldImageButton.onClick.AddListener(()=> OnClickNextFieldImageButton());
+        _returnFieldImageButton.onClick.AddListener(()=> OnClickReturnFieldImageButton());
     }
 
-    void ChangeFieldImage(bool next){
-        List<string> _changeFields = new List<string>()
-        { 
-            FieldConstant.Tokyo,
-            FieldConstant.Savannah,
-            FieldConstant.PacificOcean,
-            FieldConstant.Space,
-        };
-
-        if (next == true)
+    void OnClickNextFieldImageButton()
+    {
+        _fieldNumber++;
+        if (_fieldNumber == _fieldsName.Count)
         {
-            _fieldNumber++;
-            if (_fieldNumber == 4)
-            {
-                _fieldNumber = 0;
-            }
-            SetTextAndImage(_changeFields[_fieldNumber], _fieldNumber);
+            _fieldNumber = 0;
         }
-        else
-        {
-            _fieldNumber--;
-            if (_fieldNumber == -1)
-            {
-                _fieldNumber = 3;
-            }
-            SetTextAndImage(_changeFields[_fieldNumber], _fieldNumber);
-        }
+        SetTextAndImage(_fieldsName[_fieldNumber], _fieldNumber);
     }
 
-    void SetTextAndImage(string fieldName, int fieldNumber){
+    void OnClickReturnFieldImageButton()
+    {
+        _fieldNumber--;
+        if (_fieldNumber <= 0)
+        {
+            _fieldNumber = _fieldsName.Count;
+        }
+        SetTextAndImage(_fieldsName[_fieldNumber - 1], _fieldNumber - 1);
+    }
+
+    void SetTextAndImage(string fieldName, int fieldNumber)
+    {
         _fieldText.text = fieldName;
         _fieldImage.sprite = _fieldImages[fieldNumber];
     }
