@@ -81,7 +81,8 @@ public class BattleView : MonoBehaviour
         _battleTextImage.enabled = false;
     }
 
-    public void SetCreature(){
+    public void SetCreature()
+    {   
         var elephant = new Creature(ElephantName, ElephantPower, FieldConstant.Savannah);
         var lion = new Creature(LionName, LionPower, FieldConstant.Savannah);
         var zebra = new Creature(ZebraName, ZebraPower, FieldConstant.Savannah);
@@ -98,7 +99,7 @@ public class BattleView : MonoBehaviour
             { OrcaImage, orca },
             { HumanImage, human },
         };
-        
+
         Dictionary<Sprite, string> fields = new Dictionary<Sprite, string>()
         {
             { _fieldImages[(int)FieldConstant.Field.Tokyo], FieldConstant.Tokyo },
@@ -130,45 +131,12 @@ public class BattleView : MonoBehaviour
 
     void JudgeBattle(Creature player, Creature opponent, string field)
     {
-        Dictionary<string, int> fieldScale = new Dictionary<string, int>()
-        {
-            {FieldConstant.Tokyo, 15},
-            {FieldConstant.Savannah, 4},
-            {FieldConstant.PacificOcean, 6},
-            {FieldConstant.Space, 2}
-        };
+        SetScaledPower(player, opponent, field);
 
-        if (player.field == field)
-        {
-            _playerScaledPower = player.power * fieldScale[player.field];
-        }
-        else if (field == FieldConstant.Space)
-        {
-            _playerScaledPower = player.power / fieldScale[FieldConstant.Space];
-        }
-        else 
-        {
-            _playerScaledPower = player.power;
-        }
-
-        if (opponent.field == field)
-        {
-            _opponentScaledPower = opponent.power * fieldScale[opponent.field];
-        }
-        else if (field == FieldConstant.Space)
-        {
-            _opponentScaledPower = opponent.power / fieldScale[FieldConstant.Space];
-        }
-        else 
-        {
-            _opponentScaledPower = opponent.power;
-        }
-
-        _playerCreatureText.text = player.field + "\n" + Power + ":" +
-            _playerScaledPower + "\n" + player.name;
-
-        _opponentCreatureText.text = opponent.field + "\n" + Power + ":" +
-            _opponentScaledPower + "\n" + opponent.name;
+        _playerCreatureText.text = 
+        $"{player.field}\n{Power}:{_playerScaledPower}\n{player.name}";
+        _opponentCreatureText.text = 
+        $"{opponent.field}\n{Power}:{_opponentScaledPower}\n{opponent.name}";
 
         if (_playerScaledPower > _opponentScaledPower)
         {
@@ -204,21 +172,61 @@ public class BattleView : MonoBehaviour
         Application.Quit();
     }
 
-    public IEnumerator BattleCoroutine(){
+    public IEnumerator BattleCoroutine()
+    {
         _playerCreatureSmoke.SetActive(false);
         _opponentCreatureSmoke.SetActive(false);
+
         yield return new WaitForSeconds(FalseVsImageTime);
+
         _vsImage.enabled = false;
         _playerBattleAnimator.SetTrigger("PlayerBattleTrigger");
         _opponentBattleAnimator.SetTrigger("OpponentBattleTrigger");
+
         yield return new WaitForSeconds(TrueSmokeAnimationTime);
+
         _playerCreatureSmoke.SetActive(true);
         _opponentCreatureSmoke.SetActive(true);
+
         yield return new WaitForSeconds(FinishBattleTime);
+
         _playerCreatureSmoke.SetActive(false);
         _opponentCreatureSmoke.SetActive(false);
         _battleText.enabled = true;
         _battleTextImage.enabled = true;
         _nextGameButton.gameObject.SetActive(true);
+    }
+
+    void SetScaledPower(Creature player, Creature opponent, string field)
+    {
+        Dictionary<string, int> fieldScale = new Dictionary<string, int>()
+        {
+            {FieldConstant.Tokyo, 15},
+            {FieldConstant.Savannah, 4},
+            {FieldConstant.PacificOcean, 6},
+            {FieldConstant.Space, 2}
+        };
+
+        _playerScaledPower = player.power;
+        _opponentScaledPower = opponent.power;
+
+        if (player.field == field && opponent.field == field)
+        {
+            _playerScaledPower = player.power * fieldScale[player.field];
+            _opponentScaledPower = opponent.power * fieldScale[opponent.field];
+        }
+        else if (player.field == field && opponent.field != field)
+        {
+            _playerScaledPower = player.power * fieldScale[player.field];
+        }
+        else if (player.field != field && opponent.field == field)
+        {
+            _opponentScaledPower = opponent.power * fieldScale[opponent.field];
+        }
+        else
+        {
+            _playerScaledPower = player.power / fieldScale[FieldConstant.Space];
+            _opponentScaledPower = opponent.power / fieldScale[FieldConstant.Space];
+        }
     }
 }

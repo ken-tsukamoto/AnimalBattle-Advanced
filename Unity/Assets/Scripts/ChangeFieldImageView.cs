@@ -36,7 +36,7 @@ public class ChangeFieldImageView : MonoBehaviour
         {
             _fieldNumber = 0;
         }
-        SetTextAndImage(_fieldsName[_fieldNumber], _fieldNumber);
+        SetTextAndImage(_fieldNumber);
     }
 
     void OnClickReturnFieldImageButton()
@@ -46,12 +46,12 @@ public class ChangeFieldImageView : MonoBehaviour
         {
             _fieldNumber = _fieldsName.Count;
         }
-        SetTextAndImage(_fieldsName[_fieldNumber - 1], _fieldNumber - 1);
+        SetTextAndImage(_fieldNumber - 1);
     }
-
-    void SetTextAndImage(string fieldName, int fieldNumber)
+    
+    void SetTextAndImage(int fieldNumber)
     {
-        _fieldText.text = fieldName;
+        _fieldText.text = _fieldsName[fieldNumber];
         _fieldImage.sprite = _fieldImages[fieldNumber];
     }
 }
