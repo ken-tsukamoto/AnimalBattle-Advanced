@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 46782615}
-  - component: {fileID: 46782614}
+  - component: {fileID: 46782616}
   m_Layer: 0
   m_Name: CreatureModel
   m_TagString: Untagged
@@ -262,18 +262,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &46782614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46782613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556674679367bb049bb47b6abcf2f112, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &46782615
 Transform:
   m_ObjectHideFlags: 0
@@ -289,6 +277,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &46782616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46782613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556674679367bb049bb47b6abcf2f112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &75788043
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,14 +840,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerDeleteButton: {fileID: 661375992}
   _opponentDeleteButton: {fileID: 162918888}
-  _characterButtons:
+  _creatureButtons:
   - {fileID: 1093196982}
   - {fileID: 684744610}
   - {fileID: 32310440}
   - {fileID: 937866526}
   - {fileID: 473704526}
   - {fileID: 1617429528}
-  _characterImages:
+  _creatureImages:
   - {fileID: 21300000, guid: 51caf7357b69e734eb9395312c8ed9a6, type: 3}
   - {fileID: 21300000, guid: a42a4f0e1ae2ef2438e28b7e6899ea07, type: 3}
   - {fileID: 21300000, guid: a2725e9ae16af3644aff9fbe0a637bad, type: 3}
@@ -1682,7 +1682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594d27149c722144aabb605b55dce1c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creatureModel: {fileID: 46782614}
   _mainGameObject: {fileID: 762717733}
   _battleGameObject: {fileID: 754102181}
   _playerCreatureSmoke: {fileID: 1155360845}
@@ -1692,7 +1691,7 @@ MonoBehaviour:
   _finishGameButton: {fileID: 1227069316}
   _playerBattleAnimator: {fileID: 1550472738}
   _opponentBattleAnimator: {fileID: 1966346243}
-  _characterBattleImages:
+  _creatureBattleImages:
   - {fileID: 21300000, guid: 7a802940fc96e7c498750b24156cf9f8, type: 3}
   - {fileID: 21300000, guid: 25ecd80439574974c8a5c4221772b51f, type: 3}
   - {fileID: 21300000, guid: fc0778164cbcea0499611d4ad5ab1f7c, type: 3}

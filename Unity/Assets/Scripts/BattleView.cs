@@ -47,7 +47,7 @@ public class BattleView : MonoBehaviour
     [SerializeField] Animator _playerBattleAnimator;
     [SerializeField] Animator _opponentBattleAnimator;
 
-    [SerializeField] List<Sprite> _characterBattleImages;
+    [SerializeField] List<Sprite> _creatureBattleImages;
     [SerializeField] List<Sprite> _fieldImages;
 
     [SerializeField] Image _playerCreatureImage;
@@ -62,10 +62,15 @@ public class BattleView : MonoBehaviour
     [SerializeField] Text _opponentCreatureText;
     [SerializeField] Text _battleText;
 
+    Creature player;
+    Creature opponent;
+
+    string _field;
+
     int _playerScaledPower;
     int _opponentScaledPower;
 
-    public void Battle()
+    public void OnClickBattleButton()
     {
         _startBattleButton.onClick.AddListener(()=> StartBattle());
         _nextGameButton.onClick.AddListener(()=> NextGame());
@@ -110,23 +115,21 @@ public class BattleView : MonoBehaviour
 
         Dictionary<string, Sprite> new_creatures_image = new Dictionary<string, Sprite>()
         {
-            { ElephantImage, _characterBattleImages[(int)CreatureConstant.Creature.Elephant] },
-            { LionImage, _characterBattleImages[(int)CreatureConstant.Creature.Lion] },
-            { ZebraImage, _characterBattleImages[(int)CreatureConstant.Creature.Zebra] },
-            { DolphinImage, _characterBattleImages[(int)CreatureConstant.Creature.Dolphin] },
-            { OrcaImage, _characterBattleImages[(int)CreatureConstant.Creature.Orca] },
-            { HumanImage, _characterBattleImages[(int)CreatureConstant.Creature.Human] },
+            { ElephantImage, _creatureBattleImages[(int)CreatureConstant.Creature.Elephant] },
+            { LionImage, _creatureBattleImages[(int)CreatureConstant.Creature.Lion] },
+            { ZebraImage, _creatureBattleImages[(int)CreatureConstant.Creature.Zebra] },
+            { DolphinImage, _creatureBattleImages[(int)CreatureConstant.Creature.Dolphin] },
+            { OrcaImage, _creatureBattleImages[(int)CreatureConstant.Creature.Orca] },
+            { HumanImage, _creatureBattleImages[(int)CreatureConstant.Creature.Human] },
         };
 
         _playerCreatureBattleImage.sprite = new_creatures_image[_playerCreatureImage.sprite.name];
         _opponentCreatureBattleImage.sprite = new_creatures_image[_opponentCreatureImage.sprite.name];
 
-        Creature player = creatures[_playerCreatureImage.sprite.name];
-        Creature opponent = creatures[_opponentCreatureImage.sprite.name];
+        player = creatures[_playerCreatureImage.sprite.name];
+        opponent = creatures[_opponentCreatureImage.sprite.name];
 
-        string _field = fields[_fieldImage.sprite];
-
-        JudgeBattle(player, opponent, _field);
+        _field = fields[_fieldImage.sprite];
     }
 
     void JudgeBattle(Creature player, Creature opponent, string field)
@@ -158,6 +161,8 @@ public class BattleView : MonoBehaviour
         _battleGameObject.SetActive(true);
 
         SetCreature();
+
+        JudgeBattle(player, opponent, _field);
 
         StartCoroutine(BattleCoroutine());
     }

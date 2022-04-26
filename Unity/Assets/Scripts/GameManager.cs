@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        _creatureShowView.SetCreatureShow();
+        _creatureShowView.OnClickCreatureButtons();
         _changeFieldImageView.OnClickFieldImageButton();
-        _battleView.Battle();
+        _battleView.OnClickBattleButton();
     }
 }
