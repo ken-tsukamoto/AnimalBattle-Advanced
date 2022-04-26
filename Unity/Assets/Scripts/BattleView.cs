@@ -86,8 +86,8 @@ public class BattleView : MonoBehaviour
         _battleTextImage.enabled = false;
     }
 
-    public void SetCreature()
-    {   
+    public void InitializeCreature()
+    {
         var elephant = new Creature(ElephantName, ElephantPower, FieldConstant.Savannah);
         var lion = new Creature(LionName, LionPower, FieldConstant.Savannah);
         var zebra = new Creature(ZebraName, ZebraPower, FieldConstant.Savannah);
@@ -160,7 +160,7 @@ public class BattleView : MonoBehaviour
         _mainGameObject.SetActive(false);
         _battleGameObject.SetActive(true);
 
-        SetCreature();
+        InitializeCreature();
 
         JudgeBattle(player, opponent, _field);
 
